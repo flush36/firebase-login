@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ValidateConfirmPassword } from '../../validators/confirmPassword';
 
 @IonicPage({
   name: 'create-user'
@@ -26,4 +27,13 @@ export class CreateUserPage {
       })
   }
 
+  validatePassword() {
+   let hasError = ValidateConfirmPassword(this.registerForm);
+   this.registerForm.get('confirmPassword').setErrors(hasError);
+  }
+
+  submitForm() {
+    console.log('testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+   // console.log(this.registerForm.value)
+  }
 }
