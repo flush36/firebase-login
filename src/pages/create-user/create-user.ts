@@ -41,18 +41,21 @@ export class CreateUserPage {
    this.afAuth.auth.createUserWithEmailAndPassword(
      this.registerForm.value.email,
      this.registerForm.value.password).then((response)=> {
-       this.presentAlert();
+       this.presentAlert('Usuário cadastrado',
+        'Usuário cadastrado com sucesso!');
        this.navCtrl.setRoot(StartPage);
      })
      .catch((error)=> {
-       console.log('Deu erro', error);
+        if(error.code == 'auth/email-already-in-use') {
+          this.presentAlert('Erro', 'E-mail já cadastrado!');
+        }
      })
   }
 
-  presentAlert() {
+  presentAlert(title: string, subtitle: string) {
     let alert = this.alertCtrl.create({
-      title: 'Usuário',
-      subTitle: 'Usuário cadastrado com sucesso!',
+      title: title,
+      subTitle: subtitle,
       buttons: ['OK']
     });
     alert.present();
