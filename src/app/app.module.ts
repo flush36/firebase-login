@@ -1,4 +1,4 @@
-import { StartPage } from './../pages/start/start';
+import { StartPageModule } from './../pages/start/start.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,25 +12,25 @@ import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
-
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    StartPage
+    HomePage
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    IonicModule.forRoot(MyApp)
+    IonicStorageModule.forRoot(),
+    IonicModule.forRoot(MyApp),
+    StartPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    StartPage
+    HomePage
   ],
   providers: [
     StatusBar,
